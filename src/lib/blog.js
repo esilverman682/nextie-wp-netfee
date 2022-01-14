@@ -39,7 +39,9 @@ export async function getPostBySlug(slug) {
       },
     });
   } catch (e) {
-    console.log(`[posts][getPostBySlug] Failed to query post data: ${e.message}`);
+    console.log(
+      `[posts][getPostBySlug] Failed to query post data: ${e.message}`
+    );
     throw e;
   }
 
@@ -57,8 +59,12 @@ export async function getPostBySlug(slug) {
         },
       });
     } catch (e) {
-      console.log(`[posts][getPostBySlug] Failed to query SEO plugin: ${e.message}`);
-      console.log('Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.');
+      console.log(
+        `[posts][getPostBySlug] Failed to query SEO plugin: ${e.message}`
+      );
+      console.log(
+        'Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.'
+      );
       throw e;
     }
 
@@ -204,7 +210,9 @@ export async function getRecentPosts({ count }) {
 
 export function sanitizeExcerpt(excerpt) {
   if (typeof excerpt !== 'string') {
-    throw new Error(`Failed to sanitize excerpt: invalid type ${typeof excerpt}`);
+    throw new Error(
+      `Failed to sanitize excerpt: invalid type ${typeof excerpt}`
+    );
   }
 
   let sanitized = excerpt;
@@ -281,7 +289,10 @@ export async function getRelatedPosts(category, postId, count = 5) {
     const { posts } = await getPostsByCategoryId(category.databaseId);
     const filtered = posts.filter(({ postId: id }) => id !== postId);
     const sorted = sortObjectsByDate(filtered);
-    relatedPosts = sorted.map((post) => ({ title: post.title, slug: post.slug }));
+    relatedPosts = sorted.map((post) => ({
+      title: post.title,
+      slug: post.slug,
+    }));
   }
 
   if (relatedPosts.length > count) {

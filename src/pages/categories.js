@@ -29,7 +29,12 @@ export default function Categories({ categories }) {
         <meta property="og:description" content={metaDescription} />
       </Helmet>
 
-      <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
+      <WebpageJsonLd
+        title={title}
+        description={metaDescription}
+        siteTitle={siteTitle}
+        slug={slug}
+      />
 
       <Header>
         <Container>

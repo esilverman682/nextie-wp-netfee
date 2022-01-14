@@ -1,6 +1,10 @@
 import { getApolloClient } from 'lib/apollo-client';
 
-import { QUERY_ALL_PAGES, QUERY_PAGE_BY_URI, QUERY_PAGE_SEO_BY_URI } from 'data/pages';
+import {
+  QUERY_ALL_PAGES,
+  QUERY_PAGE_BY_URI,
+  QUERY_PAGE_SEO_BY_URI,
+} from 'data/pages';
 
 /**
  * pagePathBySlug
@@ -29,7 +33,9 @@ export async function getPageByUri(uri) {
       },
     });
   } catch (e) {
-    console.log(`[pages][getPageByUri] Failed to query page data: ${e.message}`);
+    console.log(
+      `[pages][getPageByUri] Failed to query page data: ${e.message}`
+    );
     throw e;
   }
 
@@ -47,8 +53,12 @@ export async function getPageByUri(uri) {
         },
       });
     } catch (e) {
-      console.log(`[pages][getPageByUri] Failed to query SEO plugin: ${e.message}`);
-      console.log('Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.');
+      console.log(
+        `[pages][getPageByUri] Failed to query SEO plugin: ${e.message}`
+      );
+      console.log(
+        'Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.'
+      );
       throw e;
     }
 
@@ -106,7 +116,9 @@ export async function getAllPages() {
     query: QUERY_ALL_PAGES,
   });
 
-  const pages = data?.data.pages.edges.map(({ node = {} }) => node).map(mapPageData);
+  const pages = data?.data.pages.edges
+    .map(({ node = {} }) => node)
+    .map(mapPageData);
 
   return {
     pages,
@@ -167,7 +179,9 @@ export function getBreadcrumbsByUri(uri, pages) {
   // page to gather the metadata for the breadcrumbs
 
   do {
-    const breadcrumb = pages.find((page) => page.uri === `/${uriSegments.join('/')}/`);
+    const breadcrumb = pages.find(
+      (page) => page.uri === `/${uriSegments.join('/')}/`
+    );
 
     // If the breadcrumb is the active page, we want to pass udefined for the uri to
     // avoid the breadcrumbs being rendered as a link, given it's the current page

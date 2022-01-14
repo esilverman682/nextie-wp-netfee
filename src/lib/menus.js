@@ -77,7 +77,9 @@ export const parseHierarchicalMenu = (
     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
     childrenOf[id] = childrenOf[id] || [];
     newItem[childrenKey] = childrenOf[id];
-    parentId ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem) : tree.push(newItem);
+    parentId
+      ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
+      : tree.push(newItem);
   });
   return tree;
 };
@@ -96,7 +98,9 @@ export function findMenuByLocation(menus, location) {
   const searchLocations = [...location];
   do {
     menu = menus.find(function ({ locations }) {
-      return locations.map((loc) => loc.toUpperCase()).includes(searchLocations.shift()?.toUpperCase());
+      return locations
+        .map((loc) => loc.toUpperCase())
+        .includes(searchLocations.shift()?.toUpperCase());
     });
   } while (!menu && location.length > 0);
 
