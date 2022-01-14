@@ -12,7 +12,14 @@ const DEFAULT_METADATA_OPTIONS = {
   compactCategories: true,
 };
 
-const Metadata = ({ className, author, date, categories, options = DEFAULT_METADATA_OPTIONS, isSticky = false }) => {
+const Metadata = ({
+  className,
+  author,
+  date,
+  categories,
+  options = DEFAULT_METADATA_OPTIONS,
+  isSticky = false,
+}) => {
   const metadataClassName = new ClassName(styles.metadata);
 
   metadataClassName.addIf(className, className);

@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 
-import { getPostBySlug, getAllPosts, getRelatedPosts, postPathBySlug } from 'lib/posts';
+import {
+  getPostBySlug,
+  getAllPosts,
+  getRelatedPosts,
+  postPathBySlug,
+} from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
@@ -48,7 +53,8 @@ export default function Post({ post, socialImage, relatedPosts }) {
     metadata: {
       ...post,
       title: metaTitle,
-      description: description || post.og?.description || `Read more about ${title}`,
+      description:
+        description || post.og?.description || `Read more about ${title}`,
     },
   });
 
@@ -111,7 +117,9 @@ export default function Post({ post, socialImage, relatedPosts }) {
 
       <Section className={styles.postFooter}>
         <Container>
-          <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+          <p className={styles.postModified}>
+            Last updated on {formatDate(modified)}.
+          </p>
           {!!relatedPostsList.length && (
             <div className={styles.relatedPosts}>
               {relatedPostsTitle.name ? (

@@ -14,7 +14,8 @@ const Footer = () => {
   const { title } = metadata;
 
   const hasRecentPosts = Array.isArray(recentPosts) && recentPosts.length > 0;
-  const hasRecentCategories = Array.isArray(categories) && categories.length > 0;
+  const hasRecentCategories =
+    Array.isArray(categories) && categories.length > 0;
   const hasMenu = hasRecentPosts || hasRecentCategories;
 
   return (

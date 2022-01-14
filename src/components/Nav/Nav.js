@@ -5,7 +5,10 @@ import { FaSearch } from 'react-icons/fa';
 import useSite from 'hooks/use-site';
 import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
-import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
+import {
+  findMenuByLocation,
+  MENU_LOCATION_NAVIGATION_DEFAULT,
+} from 'lib/menus';
 
 import Section from 'components/Section';
 
@@ -53,7 +56,9 @@ const Nav = () => {
     // When the search box opens up, additionall find the search input and focus
     // on the element so someone can start typing right away
 
-    const searchInput = Array.from(formRef.current.elements).find((input) => input.type === 'search');
+    const searchInput = Array.from(formRef.current.elements).find(
+      (input) => input.type === 'search'
+    );
 
     searchInput.focus();
 
@@ -134,7 +139,10 @@ const Nav = () => {
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      if (focusElement.nodeName === 'INPUT' && focusElement.nextSibling.children[0].nodeName !== 'P') {
+      if (
+        focusElement.nodeName === 'INPUT' &&
+        focusElement.nextSibling.children[0].nodeName !== 'P'
+      ) {
         focusElement.nextSibling.children[0].firstChild.firstChild.focus();
       } else if (focusElement.parentElement.nextSibling) {
         focusElement.parentElement.nextSibling.firstChild.focus();
@@ -145,7 +153,10 @@ const Nav = () => {
 
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      if (focusElement.nodeName === 'A' && focusElement.parentElement.previousSibling) {
+      if (
+        focusElement.nodeName === 'A' &&
+        focusElement.parentElement.previousSibling
+      ) {
         focusElement.parentElement.previousSibling.firstChild.focus();
       } else {
         focusElement.parentElement.parentElement.lastChild.firstChild.focus();
@@ -186,7 +197,13 @@ const Nav = () => {
         </p>
         <ul className={styles.navMenu}>
           {navigation?.map((listItem) => {
-            return <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />;
+            return (
+              <NavListItem
+                key={listItem.id}
+                className={styles.navSubMenu}
+                item={listItem}
+              />
+            );
           })}
         </ul>
         <div className={styles.navSearch}>
@@ -197,7 +214,11 @@ const Nav = () => {
             </button>
           )}
           {searchVisibility === SEARCH_VISIBLE && (
-            <form ref={formRef} action="/search" data-search-is-active={!!query}>
+            <form
+              ref={formRef}
+              action="/search"
+              data-search-is-active={!!query}
+            >
               <input
                 type="search"
                 name="q"
